@@ -4,10 +4,16 @@
   "description": "## Descripción del Proyecto",
   "main": "app.js",
   "scripts": {
-    "start":"node --watch app.js",
+    "start": "node --watch app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mysql2": "^3.11.3",
+    "sequelize": "^6.37.4",
+    "sqlite3": "^5.1.7"
+  }
 }
