@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const contenidoRoutes = require('./routes/contenidoRoutes');
+const contenidoRoutes = require('../routes/contenidoRoutes');
 const db = require('./conexion/database');
 
 // Middlewares
