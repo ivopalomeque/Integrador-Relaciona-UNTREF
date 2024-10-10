@@ -1,2 +1,46 @@
-# Hola mundo
-GET http://localhost:3008/
+### Mostrar todo el contenido
+GET http://localhost:3008/contenido
+Content-Type: application/json
+
+### Traer contenido por id
+GET http://localhost:3008/:id
+Content-Type: application/json
+
+### Filtrar por título, género o categoría.
+GET http://localhost:3008/filtrar?titulo=nombre&genero=accion&categoria=pelicula
+Content-Type: application/json
+
+### Agregar nuevo contenido
+POST http://localhost:3008/nuevocontenido
+Content-Type: application/json
+
+{
+  "poster": "/posters/nueva_pelicula.jpg",
+  "titulo": "Nueva película",
+  "busqueda": "Nueva película, acción, aventura",
+  "resumen": "Resumen de la nueva película",
+  "temporadas": 1,
+  "duracion": "120 minutos",
+  "trailer": "https://youtube.com/nueva_pelicula",
+  "categoria_id": 1,
+  "actores": [1, 2], // IDs de los actores
+  "generos": [1, 2]   // IDs de los géneros
+}
+
+### Actualizar un contenido por ID
+PUT http://localhost:3008/:id
+Content-Type: application/json
+
+{
+  "titulo": "Película actualizada",
+  "poster": "/posters/actualizado.jpg",
+  "busqueda": "Película actualizada, acción, aventura",
+  "resumen": "Nuevo resumen",
+  "temporadas": 2,
+  "duracion": "150 minutos",
+  "trailer": "https://youtube.com/actualizado"
+}
+
+### Eliminar un contenido por ID
+DELETE http://localhost:3008/:id
+Content-Type: application/json

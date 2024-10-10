@@ -1,27 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const { sequelize } = require('../conexion/database')
+const { getAllContent, getContentById, filterContent, addContent, updateContent, deleteContent } = require('../controllers/contenidoController');
 
-// Routes for CRUD
-router.get('/', (req, res) => {
-    // Get all content
-});
 
-router.get('/:id', (req, res) => {
-    // Get content by ID
-});
+// Definimos las rutas
 
-router.post('/', (req, res) => {
-    // Add new content
-});
+// Obtener todos los contenidos
+router.get('/contenido', getAllContent);
 
-router.put('/:id', (req, res) => {
-    // Update content by ID
-});
+// Obtener un contenido por ID
+router.get('/:id', getContentById);
 
-router.delete('/:id', (req, res) => {
-    // Delete content by ID
-});
+// Filtrar contenidos (por título, genero o categoría)
+router.get('/filtrar', filterContent);
+
+// Agregar un nuevo contenido
+router.post('/nuevocontenido', addContent);
+
+// Actualizar un contenido
+router.put('/:id', updateContent);
+
+// Eliminar un contenido
+router.delete('/:id', deleteContent);
 
 module.exports = router;
     
