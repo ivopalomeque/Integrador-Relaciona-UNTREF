@@ -1,10 +1,10 @@
 # Proyecto Integrador: Relacional Backend Diplomatura UNTREF
 
-npm init -y
-npm install express -e
-npm install sequelize
-npm install --save mysql2
-npm install --save sqlite3
+- npm init -y
+- npm install express -e
+- npm install sequelize
+- npm install --save mysql2
+- npm install --save sqlite3
 
 ## Descripción del Proyecto
 
