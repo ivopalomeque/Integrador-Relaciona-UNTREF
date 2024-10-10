@@ -2,3 +2,4 @@ DATABASE = trailerflix
 DBUSER = <youruser>
 PASSWORD = <yourpassword>
 HOST = localhost
+PORT = <yourport>

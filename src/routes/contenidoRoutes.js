@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../src/conexion/database');
+const { sequelize } = require('../conexion/database')
 
 // Routes for CRUD
 router.get('/', (req, res) => {
