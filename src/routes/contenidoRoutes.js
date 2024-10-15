@@ -9,7 +9,7 @@ const { getAllContent, getContentById, filterContent, addContent, updateContent,
 router.get('/contenido', getAllContent);
 
 // Obtener un contenido por ID
-router.get('/:id', getContentById);
+router.get('/contenido/:id', getContentById);
 
 // Filtrar contenidos (por título, genero o categoría)
 router.get('/filtrar', filterContent);
@@ -18,10 +18,10 @@ router.get('/filtrar', filterContent);
 router.post('/nuevocontenido', addContent);
 
 // Actualizar un contenido
-router.put('/:id', updateContent);
+router.put('/update/:id', updateContent);
 
 // Eliminar un contenido
-router.delete('/:id', deleteContent);
+router.delete('/delete/:id', deleteContent);
 
 module.exports = router;
     

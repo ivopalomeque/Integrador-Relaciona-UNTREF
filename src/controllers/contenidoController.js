@@ -6,6 +6,7 @@ const { Categoria } = require('../models/categoria');
 const { Contenido } = require('../models/contenido');
 const { Genero } = require('../models/genero');
 
+
 // Controlador para obtener todos los contenidos
 const getAllContent = async (req, res) => {
     try {
@@ -57,7 +58,7 @@ const filterContent = async (req, res) => {
     }
 
     if (categoria) {
-        whereClause['$categoria.nombre_categoria$'] = { [Op.like]: `%${categoria}%` };
+        whereClause['$categorias.nombre_categoria$'] = { [Op.like]: `%${categoria}%` };
     }
 
     try {
@@ -105,7 +106,7 @@ const addContent = async (req, res) => {
                 if (!actor) {
                     return res.status(400).json({ message: `El actor con ID ${actor_id} no existe.` });
                 }
-                await nuevoContenido.addActor(actor);
+                await nuevoContenido.addActor(actor); // Asumiendo que la relación ahora funciona
             }
         }
 
@@ -116,7 +117,7 @@ const addContent = async (req, res) => {
                 if (!genero) {
                     return res.status(400).json({ message: `El género con ID ${genero_id} no existe.` });
                 }
-                await nuevoContenido.addGenero(genero);
+                await nuevoContenido.addGenero(genero); // Asumiendo que la relación ahora funciona
             }
         }
 

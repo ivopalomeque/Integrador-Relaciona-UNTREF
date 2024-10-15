@@ -1289,8 +1289,8 @@ INSERT INTO contenido_generos (contenido_id, genero_id) VALUES
 (97, 12),
 (97, 2);
 
--- Relaciones entre "contenido" y "generos" de series
-INSERT INTO contenido_generos (contenido_id, genero_id) VALUES
+-- Relaciones entre "contenido" y "actores" de series
+INSERT INTO contenido_actores (contenido_id, actor_id) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -1574,8 +1574,8 @@ INSERT INTO contenido_generos (contenido_id, genero_id) VALUES
 (25, 795),
 (25, 796);
 
--- Relaciones entre "contenido" y "generos" de películas
-INSERT INTO contenido_generos (contenido_id, genero_id) VALUES
+-- Relaciones entre "contenido" y "actores" de películas
+INSERT INTO contenido_actores (contenido_id, actor_id) VALUES
 (26, 31),
 (26, 33),
 (26, 34),

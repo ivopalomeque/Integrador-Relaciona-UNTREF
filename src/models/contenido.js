@@ -56,16 +56,18 @@ const Contenido = sequelize.define('Contenido', {
     Contenido.belongsToMany(models.Actor, {
       through: 'contenido_actores',
       foreignKey: 'contenido_id',
+      otherKey: 'actor_id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'
-    });
+  });
 
     Contenido.belongsToMany(models.Genero, {
       through: 'contenido_generos',
       foreignKey: 'contenido_id',
+      otherKey: 'genero_id',
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE'
-    });
+  });
   };
 
 module.exports = { Contenido }

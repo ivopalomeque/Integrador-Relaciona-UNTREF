@@ -3,6 +3,7 @@ const app = express();
 const contenidoRoutes = require('./src/routes/contenidoRoutes');
 const { sequelize } = require('./src/conexion/database');
 
+
 // Middlewares
 app.use(express.json());
 
