@@ -7,11 +7,7 @@ GET http://localhost:3008/contenido/id
 Content-Type: application/json
 
 ### Filtrar por título, género o categoría.
-
-### filtrar?categorias=Película
-### filtrar?titulo=Riverdale
-### filtrar?generos=Acción
-GET http://localhost:3008/filtrar?generos=Acción
+GET http://localhost:3008/filtrar?titulo=Riverdale
 Content-Type: application/json
 
 ### Agregar nuevo contenido
@@ -27,8 +23,8 @@ Content-Type: application/json
   "duracion": "",
   "trailer": "https://youtube.com/nueva_pelicula",
   "categoria_id": 2,
-  "actores": [1, 2],
-  "generos": [1, 2]
+  "actores": [5, 2],
+  "generos": [7,5]
 }
 
 ### Actualizar un contenido por ID
