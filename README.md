@@ -92,7 +92,7 @@
 <div>
 	<p>
 		<a><img src="./src/img/endpointfiltro.png" width="600"/></a>
-	</p>
+		<a><img src="./src/img/endpointfiltro2.png" width="600"/></a>
 </div>
 
 #### GET en api
