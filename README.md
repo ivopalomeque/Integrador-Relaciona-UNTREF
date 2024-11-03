@@ -111,11 +111,35 @@
 	</p>
 </div>
 
+### Endpoint para crear nuevo contenido
+
+<div>
+	<p>
+		<a><img src="./src/img/endpointnuevocontenido.png" width="600"/></a>
+</div>
+
+#### POST en api
+
+<div>
+	<p>
+		<a><img src="./src/img/postnuevocontenido.png" width="200"/></a>
+	</p>
+</div>
+
+#### Resultado en REST Client
+
+<div>
+	<p>
+		<a><img src="./src/img/resultadonuevocontenido.png" width="400"/></a>
+	</p>
+</div>
+
 ### Endpoint para actualizar contenido
 
 <div>
 	<p>
 		<a><img src="./src/img/endpointactualizarcontenido.png" width="600"/></a>
+		<a><img src="./src/img/endpointactualizarcontenido1.png" width="600"/></a>
 	</p>
 </div>
 

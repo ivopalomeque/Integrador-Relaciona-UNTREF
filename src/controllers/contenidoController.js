@@ -182,7 +182,7 @@ const addContent = async (req, res) => {
             await nuevoContenido.addGeneros(generosEncontrados); // Vincular en la tabla intermedia
         }
 
-        res.status(201).json({ message: 'Contenido agregado exitosamente.', nuevoContenido });
+        res.status(201).json({ message: 'Contenido agregado exitosamente.', nuevoContenido , actores , generos });
     } catch (err) {
         console.error('Error al agregar el contenido:', err);
         res.status(500).json({ message: 'Error al agregar el contenido.' });
@@ -236,7 +236,7 @@ const updateContent = async (req, res) => {
             await contenido.setGeneros(generosEncontrados); // Actualizar géneros en la tabla intermedia
         }
 
-        res.status(200).json({ message: 'Contenido actualizado exitosamente.', contenido });
+        res.status(200).json({ message: 'Contenido actualizado exitosamente.', contenido, actores, generos });
     } catch (err) {
         console.error(`Error al actualizar el contenido con ID (${id}):`, err);
         res.status(500).json({ message: 'Error al actualizar el contenido.' });
