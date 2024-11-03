@@ -21,7 +21,7 @@ const Genero = sequelize.define('Genero', {
 // Definición de relaciones
 Genero.associate = (models) => {
     Genero.belongsToMany(models.Contenido, {
-        through: 'contenido_generos',
+        through: 'ContenidoGenero',
         foreignKey: 'genero_id',
         otherKey: 'contenido_id', // Especifica la clave foránea del modelo relacionado
         onDelete: 'RESTRICT',

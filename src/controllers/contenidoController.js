@@ -34,7 +34,7 @@ const getAllContent = async (req, res) => {
             temporadas: content.temporadas,
             duracion: content.duracion,
             trailer: content.trailer,
-            categoria: content.Categoria ? content.Categoria.nombre_categoria : null,
+            categoria: content.Categorium ? content.Categorium.nombre_categoria : null,
             actores: content.Actors.map(actor => `${actor.nombre_actor} ${actor.apellido_actor}`).join(', '), // Concatenar nombres de actores
             generos: content.Generos.map(genero => genero.nombre_genero).join(', ') // Concatenar géneros
         }));
@@ -74,7 +74,7 @@ const getContentById = async (req, res) => {
             temporadas: content.temporadas,
             duracion: content.duracion,
             trailer: content.trailer,
-            categoria: content.Categoria ? content.Categoria.nombre_categoria : null,
+            categoria: content.Categorium ? content.Categorium.nombre_categoria : null,
             actores: content.Actors.map(actor => `${actor.nombre_actor} ${actor.apellido_actor}`).join(', '),
             generos: content.Generos.map(genero => genero.nombre_genero).join(', ')
         };
@@ -144,16 +144,11 @@ const filterContent = async (req, res) => {
 };
 
 
-// Agregar nuevo contenido
+// Controlador para agregar contenido
 const addContent = async (req, res) => {
-    // Asegúrate de que `categoria_id` se extrae correctamente de `req.body`
     const { 
         poster, titulo, busqueda, resumen, temporadas, duracion, trailer, categoria_id, actores, generos
     } = req.body;
-
-    // Log para verificar los datos recibidos
-    console.log('Datos recibidos:', req.body);
-    console.log('Categoria ID:', categoria_id);  // Verifica que `categoria_id` no esté indefinido aquí
 
     try {
         // Verificar si la categoría existe
@@ -169,24 +164,22 @@ const addContent = async (req, res) => {
 
         // Vincular actores
         if (actores && Array.isArray(actores)) {
-            for (const actor_id of actores) {
-                const actor = await Actor.findByPk(actor_id);
-                if (!actor) {
-                    return res.status(400).json({ message: `El actor con ID ${actor_id} no existe.` });
+            const actoresEncontrados = await Actor.findAll({
+                where: {
+                    id: actores
                 }
-                await nuevoContenido.addActor(actor);
-            }
+            });
+            await nuevoContenido.addActors(actoresEncontrados); // Vincular en la tabla intermedia
         }
 
         // Vincular géneros
         if (generos && Array.isArray(generos)) {
-            for (const genero_id of generos) {
-                const genero = await Genero.findByPk(genero_id);
-                if (!genero) {
-                    return res.status(400).json({ message: `El género con ID ${genero_id} no existe.` });
+            const generosEncontrados = await Genero.findAll({
+                where: {
+                    id: generos
                 }
-                await nuevoContenido.addGenero(genero);
-            }
+            });
+            await nuevoContenido.addGeneros(generosEncontrados); // Vincular en la tabla intermedia
         }
 
         res.status(201).json({ message: 'Contenido agregado exitosamente.', nuevoContenido });
@@ -196,39 +189,51 @@ const addContent = async (req, res) => {
     }
 };
 
-
-
-// Actualizar contenido por ID
+// Controlador para actualizar contenido
 const updateContent = async (req, res) => {
-    const { id } = req.params;
-    const { poster, titulo, busqueda, resumen, temporadas, duracion, trailer, categoria_id, actores, generos } = req.body;
+    const { id } = req.params; // ID del contenido a actualizar
+    const { 
+        poster, titulo, busqueda, resumen, temporadas, duracion, trailer, categoria_id, actores, generos
+    } = req.body;
 
     try {
-        // Buscar el contenido
+        // Verificar si el contenido existe
         const contenido = await Contenido.findByPk(id);
         if (!contenido) {
             return res.status(404).json({ message: `No se encontró contenido con el ID: ${id}` });
         }
 
         // Verificar si la categoría existe
-        const categoria = await Categoria.findByPk(categoria_id);
-        if (!categoria) {
-            return res.status(400).json({ message: `La categoría con ID ${categoria_id} no existe.` });
+        if (categoria_id) {
+            const categoria = await Categoria.findByPk(categoria_id);
+            if (!categoria) {
+                return res.status(400).json({ message: `La categoría con ID ${categoria_id} no existe.` });
+            }
         }
 
-        // Actualizar los datos del contenido
-        await contenido.update({ poster, titulo, busqueda, resumen, temporadas, duracion, trailer, categoria_id });
+        // Actualizar los datos básicos del contenido
+        await contenido.update({
+            poster, titulo, busqueda, resumen, temporadas, duracion, trailer, categoria_id
+        });
 
         // Actualizar relaciones con actores
         if (actores && Array.isArray(actores)) {
-            const actoresExistentes = await Actor.findAll({ where: { id: actores } });
-            await contenido.setActors(actoresExistentes);
+            const actoresEncontrados = await Actor.findAll({
+                where: {
+                    id: actores
+                }
+            });
+            await contenido.setActors(actoresEncontrados); // Actualizar actores en la tabla intermedia
         }
 
         // Actualizar relaciones con géneros
         if (generos && Array.isArray(generos)) {
-            const generosExistentes = await Genero.findAll({ where: { id: generos } });
-            await contenido.setGeneros(generosExistentes);
+            const generosEncontrados = await Genero.findAll({
+                where: {
+                    id: generos
+                }
+            });
+            await contenido.setGeneros(generosEncontrados); // Actualizar géneros en la tabla intermedia
         }
 
         res.status(200).json({ message: 'Contenido actualizado exitosamente.', contenido });
@@ -237,7 +242,6 @@ const updateContent = async (req, res) => {
         res.status(500).json({ message: 'Error al actualizar el contenido.' });
     }
 };
-
 
 // Controlador para eliminar contenido
 const deleteContent = async (req, res) => {

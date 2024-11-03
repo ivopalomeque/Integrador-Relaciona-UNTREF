@@ -1,21 +1,27 @@
-// Model for contenido_actores
+// Model for contenido_actores (Tabla Intermedia entre Contenido y Actor)
 const { sequelize } = require('../conexion/database')
-const { DataTypes } = require('sequelize')
+const { DataTypes } = require('sequelize');
 
-const ContenidoActorView = sequelize.define('ContenidoActorView', {
-    actor_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false
-    },
+const ContenidoActor = sequelize.define('contenido_actores', {
     contenido_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      allowNull: false
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'contenido',
+            key: 'id'
+        },
+        primaryKey: true
+    },
+    actor_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'actores',
+            key: 'id'
+        },
+        primaryKey: true
     }
-  }, {
-    tableName: 'contenido_actores',
-    timestamps: false
-  });
+}, {
+    timestamps: false,
+    tableName: 'contenido_actores'
+});
 
-module.exports = { ContenidoActorView }
+module.exports = ContenidoActor;

@@ -46,6 +46,8 @@ const Contenido = sequelize.define('Contenido', {
     timestamps: false
   });
 
+    // Configuración de las relaciones 
+
   Contenido.associate = (models) => {
     Contenido.belongsTo(models.Categoria, {
       foreignKey: 'categoria_id',

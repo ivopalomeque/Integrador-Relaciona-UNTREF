@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const contenidoRoutes = require('./src/routes/contenidoRoutes');
 const { sequelize } = require('./src/conexion/database');
 
@@ -10,6 +11,8 @@ const {Genero} = require  ("./src/models/genero.js")
 
 // Middlewares
 app.use(express.json());
+//Usado por problemas con express a la hora de hacer peticiones
+app.use(bodyParser.json());
 
 app.use('/', contenidoRoutes);
 

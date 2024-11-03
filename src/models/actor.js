@@ -25,7 +25,7 @@ const Actor = sequelize.define('Actor', {
 // Definición de relaciones
 Actor.associate = (models) => {
     Actor.belongsToMany(models.Contenido, {
-        through: 'contenido_actores',
+        through: 'ContenidoActor',
         foreignKey: 'actor_id',
         otherKey: 'contenido_id', // Especifica la clave foránea del modelo relacionado
         onDelete: 'CASCADE',
