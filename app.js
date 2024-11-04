@@ -32,8 +32,8 @@ Actor.associate({ Contenido });
 Genero.associate({ Contenido });
 
 // Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+const DB_PORT = process.env.DB_PORT || 3306;
+app.listen(DB_PORT, () => {
+  console.log(`Server running on port ${DB_PORT}`);
 });
     

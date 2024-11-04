@@ -4,17 +4,21 @@
   "description": "## Descripción del Proyecto",
   "main": "app.js",
   "scripts": {
-    "start": "node --watch ./app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:local": "cross-env NODE_ENV=local node app.js",
+    "start:local_railway": "cross-env NODE_ENV=local_railway node app.js",
+    "start": "cross-env NODE_ENV=production node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "mysql2": "^3.11.3",
     "sequelize": "^6.37.4",
     "sqlite3": "^5.1.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }

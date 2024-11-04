@@ -13,6 +13,8 @@
 - npm install express -e
 - npm install sequelize
 - npm install --save mysql2
+- npm install dotenv
+- npm install --save-dev cross-env
 
 ## Pasos a seguir para inicializar el proyecto
 
